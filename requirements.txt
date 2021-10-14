@@ -1,0 +1,4 @@
+flask
+selenium
+urllib3
+pillow
