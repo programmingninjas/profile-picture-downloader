@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="icons">
+    <h2>Profile Picture Downloader</h2>
+    <br/>
+    <form action="{{url_for('instagram')}}" method="post">
+          <label for="username"><a class="insta"><i class="fab fa-instagram"></i></a></label>
+          <input type="text" name="username" placeholder=" Enter Username">
+          <input type="submit" value="Download" class="btn btn-outline-danger">
+    </form>
+    <form action="{{url_for('github')}}" method="post">
+          <label for="username"><a class="git"><i class="fab fa-github"></i></a></label>
+          <input type="text" name="username" placeholder=" Enter Username">
+          <input type="submit" value="Download" class="btn btn-outline-dark">
+    </form>
+    <form action="{{url_for('twitter')}}" method="post">
+      <label for="username"><a class="twitter"><i class="fab fa-twitter"></i></a></label>
+      <input type="text" name="username" placeholder=" Enter Username">
+      <input type="submit" value="Download" class="btn btn-outline-primary">
+    </form>
+</body>
+</html>
+
+{% endblock %}
