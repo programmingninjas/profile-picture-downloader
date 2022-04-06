@@ -2,6 +2,7 @@ from flask import Flask,render_template,request
 from selenium import webdriver
 from urllib.request import urlopen,Request,urlretrieve 
 from time import sleep
+import os
 import json
 from PIL import Image
 
@@ -10,8 +11,7 @@ app = Flask(__name__)
 options = webdriver.ChromeOptions()
 
 options.add_experimental_option('excludeSwitches',['enable-logging'])
-
-options.add_argument("--headless")
+options.add_argument(r"user-data-dir={x}".format(x=os.getcwd()+'\\'+'user')) 
 
 @app.route('/',methods=['GET','POST'])
 def home():
@@ -29,7 +29,7 @@ def twitter():
 
         driver.get(f"https://twitter.com/{username}/photo")
 
-        sleep(2)
+        sleep(5)
 
         pfp = driver.find_element_by_class_name("css-9pa8cd")  #class of tag can change so keep it updated
 
@@ -59,11 +59,11 @@ def instagram():
 
         try:
 
-            pfp = driver.find_element_by_class_name('_6q-tv')  # class for open accounts
+            pfp = driver.find_element_by_class_name('be6sR')  # class for pvt
 
         except:                                                # if not found
 
-            pfp = driver.find_element_by_class_name('be6sR')   # Must be private so class for pvt
+            pfp = driver.find_element_by_class_name('_6q-tv')   # Must be open so class for open accounts
 
         src = pfp.get_attribute('src')    
 
@@ -105,9 +105,3 @@ def github():
 if __name__ == '__main__':
 
     app.run()
-
-
-
-
-
-
